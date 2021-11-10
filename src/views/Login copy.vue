@@ -1,0 +1,111 @@
+<template lang="pug">
+  div.login-container
+      el-card.login-card
+        h2 凱德板金系統進度查詢
+        el-form.login-form 
+          el-form-item
+            el-input(placeholder="帳號" )
+          el-form-item
+            el-input(placeholder="密碼")
+          el-form-item
+            el-button.login-button(tyep="primary" ative-type="submit" block) 登入
+          a.forgot-password(href="https://oxfordinformatics.com/") 忘記密碼 ?
+</template>
+
+<script>
+  export default {
+    name: "Login",
+    data() {
+      return {
+        
+      }
+    },
+    methods: {
+      
+    },
+  }
+
+
+</script>
+
+<style lang="sass" scoped>
+  .login-container 
+    display: flex
+    justify-content: center
+    
+
+  .login-card
+    
+
+  .login-form
+    margin-top: 10px
+    width: 390px
+
+  .login-button 
+    width:50%
+    margin-bottom:30px
+    background-color: teal
+    border-color: teal
+    color: white
+
+</style>
+
+<style lang="scss">
+// $teal: rgb(0, 124, 137);
+.el-button--primary {
+  background: $teal;
+  border-color: $teal;
+
+  &:hover,
+  &.active,
+  &:focus {
+    background: lighten($teal, 7);
+    border-color: lighten($teal, 7);
+  }
+}
+
+.login .el-input__inner:hover {
+  border-color: $teal;
+}
+
+.login .el-input__prefix {
+  background: rgb(238, 237, 234);
+  left: 0;
+  height: calc(100% - 2px);
+  left: 1px;
+  top: 1px;
+  border-radius: 3px;
+  .el-input__icon {
+    width: 30px;
+  }
+}
+
+.login .el-input input {
+  padding-left: 35px;
+}
+
+.login .el-card {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
+
+h2 {
+  font-family: "Open Sans";
+  letter-spacing: 1px;
+  font-family: Roboto, sans-serif;
+  padding-bottom: 20px;
+}
+
+a {
+  color: $teal;
+  text-decoration: none;
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($teal, 7);
+  }
+}
+
+
+
+</style>
