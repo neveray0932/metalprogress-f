@@ -241,13 +241,24 @@ export default {
       data.otargetdate2 = this.isDateNull(this.otargetdate2);
 
       //如果第2日期為空默認加30天
-      this.odate2 = this.defaultDatePlus30(this.odate1, this.odate2);
-      data.odate2 = this.defaultDatePlus30(this.odate1, this.odate2);
-      this.otargetdate2 = this.defaultDatePlus30(
+      // this.odate2 = this.defaultDatePlus30(this.odate1, this.odate2);
+      // data.odate2 = this.defaultDatePlus30(this.odate1, this.odate2);
+      // this.otargetdate2 = this.defaultDatePlus30(
+      //   this.otargetdate1,
+      //   this.otargetdate2
+      // );
+      // data.otargetdate2 = this.defaultDatePlus30(
+      //   this.otargetdate1,
+      //   this.otargetdate2
+      // );
+      //如果第2日期為空默認為第1日期
+      this.odate2 = this.defaultDateTheSame(this.odate1, this.odate2);
+      data.odate2 = this.defaultDateTheSame(this.odate1, this.odate2);
+      this.otargetdate2 = this.defaultDateTheSame(
         this.otargetdate1,
         this.otargetdate2
       );
-      data.otargetdate2 = this.defaultDatePlus30(
+      data.otargetdate2 = this.defaultDateTheSame(
         this.otargetdate1,
         this.otargetdate2
       );
@@ -469,6 +480,14 @@ export default {
       if (date1.length != 0) {
         if (date2.length == 0) {
           date2 = this.datePlus30(date1);
+        }
+      }
+      return date2;
+    },
+    defaultDateTheSame(date1, date2) {
+      if (date1.length != 0) {
+        if (date2.length == 0) {
+          date2 = date1;
         }
       }
       return date2;

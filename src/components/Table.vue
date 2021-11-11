@@ -36,7 +36,7 @@
           <el-table-column
             v-if="o_custbillcode"
             align="center"
-            prop="o_custbillcode"
+            prop="o_code"
             label="客戶單號"
             width="110"
           >
@@ -83,7 +83,7 @@
 
           <el-table-column prop="b_process" label="製程進度">
             <template slot-scope="scope">
-              <!-- {{scope.row}} -->
+              <!-- {{ scope.row }} -->
               <el-badge
                 v-for="item in scope.row.b_process"
                 :key="item"
@@ -222,7 +222,7 @@
           small
           background
           :pager-count="5"
-          layout="sizes,prev, next"
+          layout="sizes,prev,pager, next"
           :current-page.sync="$store.state.backToOne"
           :total="$store.state.lists.length"
           @size-change="handleSizeChange"
@@ -387,9 +387,14 @@
           @click="prev(page)"
           id="prev"
         ></el-button>
-        <span class="pageinfo"
+        <span v-if="fatherChecked" class="pageinfo"
           >當前在第{{ page }}頁，共{{
             Math.round($store.state.single.length / pageitem)
+          }}筆</span
+        >
+        <span v-else class="pageinfo"
+          >當前在第{{ page }}頁，共{{
+            Math.round($store.state.lists.length / pageitem)
           }}筆</span
         >
         <el-button
