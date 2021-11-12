@@ -318,7 +318,7 @@ export default {
                     b_process: element.b_process,
                     c_sname: element.c_sname,
                     o_billqty: element.o_billqty,
-                    o_custbillcode: element.o_code,
+                    o_code: element.o_custbillcode,
                     o_date: element.o_date,
                     o_qty: element.o_qty,
                     o_targetdate: element.o_targetdate,
@@ -363,7 +363,7 @@ export default {
                 if (typeof obj[tableDatas[i].p_id] === "undefined") {
                   obj[tableDatas[i].p_id] = {
                     p_id: tableDatas[i].p_id,
-                    o_custbillcode: tableDatas[i].o_custbillcode,
+                    o_code: tableDatas[i].o_custbillcode,
 
                     o_qty: tableDatas[i].o_qty,
                     o_prodno: tableDatas[i].o_prodno,
@@ -402,7 +402,7 @@ export default {
                   b_process_mp_over: element.b_process_mp_over,
                   c_sname: element.c_sname,
                   o_billqty: element.o_billqty,
-                  o_custbillcode: element.o_custbillcode,
+                  o_code: element.o_code,
                   o_date: element.o_date,
                   o_prodno: element.o_prodno,
                   o_qty: element.o_qty,
@@ -441,7 +441,12 @@ export default {
       return result;
     },
     convertArray(str) {
-      return str.split(";");
+      if (str == null) {
+        str = " ";
+      } else {
+        str = str.split(";");
+      }
+      return str;
     },
     convertArray1(str) {
       return str.split(",");

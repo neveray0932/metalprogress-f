@@ -148,7 +148,7 @@
           <el-table-column
             v-if="o_custbillcode"
             align="center"
-            prop="o_custbillcode"
+            prop="o_code"
             label="客戶單號"
             width="110"
           >
@@ -250,6 +250,7 @@
             'font-weight': '200',
             'border-radius': '4px',
             'text-align': 'center',
+            'z-index': '4',
           }"
           v-loading="getloadingbyf"
         >
@@ -263,7 +264,7 @@
             <template slot-scope="scope">
               <!-- {{ scope.row }} -->
               <h3>客戶簡稱:{{ scope.row.c_sname }}</h3>
-              <h3>客戶單號:{{ scope.row.o_custbillcode }}</h3>
+              <h3>客戶單號:{{ scope.row.o_code }}</h3>
               <h3>訂單日期:{{ scope.row.o_date }}</h3>
               <h3>預交日期:{{ scope.row.o_targetdate }}</h3>
               <h3>產品編號:{{ scope.row.o_prodno }}</h3>
@@ -327,7 +328,7 @@
             <template slot-scope="scope">
               <!-- {{ scope.row }} -->
               <h3>客戶簡稱:{{ scope.row.c_sname }}</h3>
-              <h3>客戶單號:{{ scope.row.o_custbillcode }}</h3>
+              <h3>客戶單號:{{ scope.row.o_code }}</h3>
               <h3>訂單日期:{{ scope.row.o_date }}</h3>
               <h3>預交日期:{{ scope.row.o_targetdate }}</h3>
               <h3>產品編號:{{ scope.row.o_prodno }}</h3>
@@ -442,6 +443,7 @@ export default {
         { mpNo: "true", mpName: "完  工" },
         { mpNo: null, mpName: "無" },
         { mpNo: "", mpName: "無" },
+        { mpNo: " ", mpName: "無" },
       ],
       afterprocess: [],
       active: 0,
@@ -486,6 +488,15 @@ export default {
     next(val) {
       console.log(val);
       this.page = val + 1;
+      if (this.getfatherChecked) {
+        if (this.page >= this.$store.state.single.length) {
+          this.page = this.$store.state.single.length;
+        }
+      } else {
+        if (this.page >= this.$store.state.lists.length) {
+          this.page = this.$store.state.lists.length;
+        }
+      }
     },
     prev(val) {
       this.page = val - 1;
@@ -530,6 +541,7 @@ export default {
     },
 
     convertString(eng) {
+      console.log(eng);
       var result;
       this.process.forEach((element) => {
         if (element.mpNo == eng) {
@@ -568,6 +580,9 @@ export default {
     getloadingbyf() {
       return this.loadingbyf;
     },
+    getfatherChecked() {
+      return this.fatherChecked;
+    },
   },
 };
 </script>
@@ -579,30 +594,26 @@ export default {
   margin: 0 0px;
 }
 .elbutton {
+  z-index: 2;
   /* height: 1px; */
   position: relative;
-  top: -400px;
+  top: -320px;
   display: flex;
   justify-content: space-between;
-  height: 330px;
+  height: 300px;
 }
 #prev {
-  /* position: relative; */
-  /* top: -400px; */
-
   border: none;
   opacity: 0.5;
 }
 #next {
-  /* position: relative; */
-  /* top: -400px; */
   border: none;
   opacity: 0.5;
 }
 .pageinfo {
   color: white;
   position: relative;
-  top: 410px;
+  top: 330px;
   height: 20px;
 }
 </style>
